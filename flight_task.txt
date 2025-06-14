@@ -1,0 +1,8 @@
+1. Open Cleartrip
+2. It's most possible that you are already logged in. IF NOT!! Do the following
+    - figure out a way to get to the login page and use load_login_details for email/phone, Enter the email or phone number and wait for me to finish the auth task (OTP etc)
+
+3. Flight is from Banglore to Bombay
+4. Here si the criteria for the flight you book
+ - between 9 am to 12 am Departure 
+ - Either Jun 21, 24

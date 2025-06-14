@@ -1,0 +1,52 @@
+1. Open blinkit
+2. It's most possible that you are already logged in. IF NOT!! Do the following
+
+    1.  FIRST: IF a popup for address appears query load_login_details.
+    2.  IF you are not logged in, figure out a way to get to the login page and use load_login_details for email/phone, Enter the email or phone number and wait for me to finish the auth task (OTP etc)
+
+3. PRODUCT SEARCH WORKFLOW - FOLLOW THIS EXACTLY:
+
+   STEP 1: For each item in items.txt, FIRST call refine_product_search to get precise search terms
+   STEP 2: Use the refined search term (not the original description) to search in zepto
+   STEP 3: Before adding ANY product to cart, call validate_product_selection to confirm it matches
+   STEP 4: Only add to cart if validation returns ACCEPT
+
+4. CRITICAL SHOPPING RULES:
+
+   ❌ BRAND SUBSTITUTION = NEVER ALLOWED 
+   - Pringles ≠ Lays ≠ Bingo (Different brands = REJECT)
+   - SuperYou ≠ ProteinX ≠ any other brand (Must be exact brand match)
+   - OpenSecret ≠ Sunfeast ≠ Britannia (Brand must match exactly)
+
+   ✅ ACCEPTABLE VARIATIONS:
+   - Size variations: 50g vs 40g vs 60g (close sizes OK)
+   - Flavor variations: Original vs Classic vs Plain (similar flavors OK)
+
+   ❌ OUT OF STOCK HANDLING:
+   - If exact brand is out of stock → DO NOT substitute with different brand
+   - Skip the item and note "Item [X] unavailable - exact brand not in stock"
+   - Continue with remaining items
+
+5. ITEMS TO ORDER:
+   
+   FIRST: Call load_items() to get the current shopping list from items.txt
+   THEN: Process each item using the workflow above.
+
+   IMPORTANT: Each item will be processed as:
+   1. Call refine_product_search with the item description
+   2. Search using the refined term
+   3. Before adding to cart, call validate_product_selection  
+   4. Only proceed if validation says ACCEPT
+   5. If validation says REJECT → SKIP item and continue with next
+
+6. After you have added all VALIDATED items, go to the checkout cart section and cross check:
+   - Remove any items that are NOT from our list
+   - Verify each item matches our brand requirements
+   - Confirm quantities are correct
+
+7. Make sure the address is 'Get Crux' - this will be part of a list of saved addresses you can find in the checkout page.
+
+8. Click on payment, and let me complete the payment manually. After I press Enter, continue and confirm the order is placed successfully.
+   - Payment method details are UPI, for upi_id please query load_login_details
+
+REMEMBER: NO BRAND SUBSTITUTIONS. Better to skip an item than get the wrong brand!
